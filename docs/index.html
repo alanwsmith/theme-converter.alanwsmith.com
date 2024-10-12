@@ -163,6 +163,23 @@ to post on syntact highlighting with classes)</p>
 
 
 
+<p>Set the background color of this page here:</p>
+
+<section class="html-section">
+
+<label for="site-background-color">Site Background Color</label>
+<input id="site-background-color" type="text" value="oklch(16.009% 0.03076 39.927)" size="40" />
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
 <p>Install your desired theme in VS Code and switch to it</p>
 
 
@@ -1282,7 +1299,13 @@ color of this page for easier referece to other sites</p>
       })
   }
 
+	function updateBackgroundColor() {
+		const el = document.querySelector("#site-background-color")
+		document.body.style.backgroundColor = el.value;
+	}
+
   document.addEventListener("DOMContentLoaded", () => {
+		updateBackgroundColor()
     preloadThemes()
     addEventListeners()
     convertTheme()
