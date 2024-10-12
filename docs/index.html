@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <script>
+    function currentSchemer() {
+      const schemer = localStorage.getItem('schemer')
+      if (schemer) {
+        return schemer
+      } else {
+        return hasSystem() ? "auto" : "light"
+      }
+    }
+    function prefersDark() {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+    }
+    function prefersLight() {
+      return window.matchMedia("(prefers-color-scheme: light)").matches
+    }
+    function hasSystem() {
+      return prefersDark() || prefersLight() ? true : false
+    }
+    function currentScheme() {
+      if (currentSchemer() === "auto") {
+        return prefersDark() ? "dark" : "light"
+      } else {
+        return currentSchemer()
+      }
+    }
+    
+    
+  </script>
+  
+  
+
+
+  <script src="/theme/scripts/theme.js" defer></script>
+
+
+<title>VS Code To CSS Theme Converter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="VS Code To CSS Theme Converter" />
+<meta property="og:description" content="a post from alan w. smith" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://theme-converter.alanwsmith.com/en/2nil3oan/?page=vs-code-to-css-theme-converter" />
+<meta property="og:image" content="https://theme-converter.alanwsmith.com/neo-images/default-og-image/1200w.jpg" />
+<link rel="apple-touch-icon" sizes="180x180" href="/theme/favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/theme/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/theme/favicons/favicon-16x16.png" />
+<link rel="manifest" href="/theme/favicons/site.webmanifest" />
+<link rel="mask-icon" href="/theme/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+<link rel="shortcut icon" href="/theme/favicons/favicon.ico" />
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="msapplication-config" content="/theme/favicons/browserconfig.xml" />
+<meta name="theme-color" content="#000000" />
+<meta name="description" content="A post from alan w. smith" /></head>
+<body>
+  
+<header>
+  
+      <div>
+        <a href="/">Home</a>
+      </div>
+      
+    </header>
+    <main class="flow">
+
+<section class="title-section flow">
+<hgroup>
+
+  
+    <h1 class="page-title">VS Code To CSS Theme Converter</h1>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+    
+<p>This is how I'm converting VS Code Themes into CSS files that
+work with the output from the
+<a href="https://docs.rs/syntect/latest/syntect/">rust syntect highlighting crate</a>
+when it's set up to output classes instead of inilne styles. (TODO: link
+to post on syntact highlighting with classes)</p>
+
+
+
+
+    
+
+    
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Notes</h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ul class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>You can get themes from the <a href="https://vscodethemes.com/" target="_blank">VS Code Themes site</a> <span class="new-tab-arrow">↗</span></p>
+
+
+</li>
+
+
+
+</ul>
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">The Conversion Process</h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ol class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>Install your desired theme in VS Code and switch to it</p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Open the command palette with on mac with:</p>
+
+
+<p><kbd 
+
+>COMMAND</kbd>+<kbd 
+
+>SHIFT</kbd>+<kbd 
+
+>p</kbd></p>
+
+
+<p>or Windows with:</p>
+
+
+<p><kbd 
+
+>CONTROL</kbd>+<kbd 
+
+>SHIFT</kbd>+<kbd 
+
+>p</kbd> </p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Run the VS Code command: </p>
+
+<section class="pre-section">
+
+<div class="pre-wrapper">
+
+
+
+
+
+
+<pre class="pre-block">Developer: Generate Color Theme From Current Settings</pre>
+
+
+    
+</div>
+</section>
+
+
+
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Copy the resulting JSON into this field:</p>
+
+<section class="html-section">
+
+<div>
+<label for="vs-code-input">VS Code Theme Input</label>
+<textarea id="vs-code-input" cols="60" rows="8">{
+	"$schema": "vscode://schemas/color-theme",
+	"type": "hcDark",
+	"colors": {
+		"actionBar.toggledBackground": "#383a49",
+		"editor.background": "#000000",
+		"editor.foreground": "#ffffff",
+		"editor.selectionBackground": "#000099",
+		"editor.selectionForeground": "#cccccc",
+		"editorIndentGuide.activeBackground1": "#ffffff",
+		"editorIndentGuide.background1": "#ffffff",
+		"editorWhitespace.foreground": "#7c7c7c",
+		"ports.iconRunningProcessForeground": "#ffffff",
+		"selection.background": "#008000",
+		"sideBarTitle.foreground": "#ffffff",
+		"statusBarItem.remoteBackground": "#00000000"
+	},
+	"tokenColors": [
+		{
+			"scope": [
+				"meta.embedded",
+				"source.groovy.embedded",
+				"string meta.image.inline.markdown",
+				"variable.legacy.builtin.python"
+			],
+			"settings": {
+				"foreground": "#FFFFFF"
+			}
+		},
+		{
+			"scope": "emphasis",
+			"settings": {
+				"fontStyle": "italic"
+			}
+		},
+		{
+			"scope": "strong",
+			"settings": {
+				"fontStyle": "bold"
+			}
+		},
+		{
+			"scope": "meta.diff.header",
+			"settings": {
+				"foreground": "#000080"
+			}
+		},
+		{
+			"scope": "comment",
+			"settings": {
+				"foreground": "#7CA668"
+			}
+		},
+		{
+			"scope": "constant.language",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": [
+				"constant.numeric",
+				"constant.other.color.rgb-value",
+				"constant.other.rgb-value",
+				"support.constant.color"
+			],
+			"settings": {
+				"foreground": "#B5CEA8"
+			}
+		},
+		{
+			"scope": "constant.regexp",
+			"settings": {
+				"foreground": "#B46695"
+			}
+		},
+		{
+			"scope": "constant.character",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": "entity.name.tag",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": [
+				"entity.name.tag.css",
+				"entity.name.tag.less"
+			],
+			"settings": {
+				"foreground": "#D7BA7D"
+			}
+		},
+		{
+			"scope": "entity.other.attribute-name",
+			"settings": {
+				"foreground": "#9CDCFE"
+			}
+		},
+		{
+			"scope": [
+				"entity.other.attribute-name.class.css",
+				"source.css entity.other.attribute-name.class",
+				"entity.other.attribute-name.id.css",
+				"entity.other.attribute-name.parent-selector.css",
+				"entity.other.attribute-name.parent.less",
+				"source.css entity.other.attribute-name.pseudo-class",
+				"entity.other.attribute-name.pseudo-element.css",
+				"source.css.less entity.other.attribute-name.id",
+				"entity.other.attribute-name.scss"
+			],
+			"settings": {
+				"foreground": "#D7BA7D"
+			}
+		},
+		{
+			"scope": "invalid",
+			"settings": {
+				"foreground": "#F44747"
+			}
+		},
+		{
+			"scope": "markup.underline",
+			"settings": {
+				"fontStyle": "underline"
+			}
+		},
+		{
+			"scope": "markup.bold",
+			"settings": {
+				"fontStyle": "bold"
+			}
+		},
+		{
+			"scope": "markup.heading",
+			"settings": {
+				"foreground": "#6796E6",
+				"fontStyle": "bold"
+			}
+		},
+		{
+			"scope": "markup.italic",
+			"settings": {
+				"fontStyle": "italic"
+			}
+		},
+		{
+			"scope": "markup.strikethrough",
+			"settings": {
+				"fontStyle": "strikethrough"
+			}
+		},
+		{
+			"scope": "markup.inserted",
+			"settings": {
+				"foreground": "#B5CEA8"
+			}
+		},
+		{
+			"scope": "markup.deleted",
+			"settings": {
+				"foreground": "#CE9178"
+			}
+		},
+		{
+			"scope": "markup.changed",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": [
+				"punctuation.definition.tag"
+			],
+			"settings": {
+				"foreground": "#808080"
+			}
+		},
+		{
+			"scope": "meta.preprocessor",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": "meta.preprocessor.string",
+			"settings": {
+				"foreground": "#CE9178"
+			}
+		},
+		{
+			"scope": "meta.preprocessor.numeric",
+			"settings": {
+				"foreground": "#B5CEA8"
+			}
+		},
+		{
+			"scope": "meta.structure.dictionary.key.python",
+			"settings": {
+				"foreground": "#9CDCFE"
+			}
+		},
+		{
+			"scope": "storage",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": "storage.type",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": "storage.modifier",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": "string",
+			"settings": {
+				"foreground": "#CE9178"
+			}
+		},
+		{
+			"scope": "string.tag",
+			"settings": {
+				"foreground": "#CE9178"
+			}
+		},
+		{
+			"scope": "string.value",
+			"settings": {
+				"foreground": "#CE9178"
+			}
+		},
+		{
+			"scope": "string.regexp",
+			"settings": {
+				"foreground": "#D16969"
+			}
+		},
+		{
+			"scope": [
+				"punctuation.definition.template-expression.begin",
+				"punctuation.definition.template-expression.end",
+				"punctuation.section.embedded"
+			],
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": [
+				"meta.template.expression"
+			],
+			"settings": {
+				"foreground": "#FFFFFF"
+			}
+		},
+		{
+			"scope": [
+				"support.type.vendored.property-name",
+				"support.type.property-name",
+				"source.css variable",
+				"source.coffee.embedded"
+			],
+			"settings": {
+				"foreground": "#D4D4D4"
+			}
+		},
+		{
+			"scope": "keyword",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": "keyword.control",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": "keyword.operator",
+			"settings": {
+				"foreground": "#D4D4D4"
+			}
+		},
+		{
+			"scope": [
+				"keyword.operator.new",
+				"keyword.operator.expression",
+				"keyword.operator.cast",
+				"keyword.operator.sizeof",
+				"keyword.operator.logical.python"
+			],
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": "keyword.other.unit",
+			"settings": {
+				"foreground": "#B5CEA8"
+			}
+		},
+		{
+			"scope": "support.function.git-rebase",
+			"settings": {
+				"foreground": "#D4D4D4"
+			}
+		},
+		{
+			"scope": "constant.sha.git-rebase",
+			"settings": {
+				"foreground": "#B5CEA8"
+			}
+		},
+		{
+			"scope": [
+				"storage.modifier.import.java",
+				"variable.language.wildcard.java",
+				"storage.modifier.package.java"
+			],
+			"settings": {
+				"foreground": "#D4D4D4"
+			}
+		},
+		{
+			"scope": "variable.language.this",
+			"settings": {
+				"foreground": "#569CD6"
+			}
+		},
+		{
+			"scope": [
+				"entity.name.function",
+				"support.function",
+				"support.constant.handlebars",
+				"source.powershell variable.other.member"
+			],
+			"settings": {
+				"foreground": "#DCDCAA"
+			}
+		},
+		{
+			"scope": [
+				"support.class",
+				"support.type",
+				"entity.name.type",
+				"entity.name.namespace",
+				"entity.name.scope-resolution",
+				"entity.name.class",
+				"storage.type.cs",
+				"storage.type.generic.cs",
+				"storage.type.modifier.cs",
+				"storage.type.variable.cs",
+				"storage.type.annotation.java",
+				"storage.type.generic.java",
+				"storage.type.java",
+				"storage.type.object.array.java",
+				"storage.type.primitive.array.java",
+				"storage.type.primitive.java",
+				"storage.type.token.java",
+				"storage.type.groovy",
+				"storage.type.annotation.groovy",
+				"storage.type.parameters.groovy",
+				"storage.type.generic.groovy",
+				"storage.type.object.array.groovy",
+				"storage.type.primitive.array.groovy",
+				"storage.type.primitive.groovy"
+			],
+			"settings": {
+				"foreground": "#4EC9B0"
+			}
+		},
+		{
+			"scope": [
+				"meta.type.cast.expr",
+				"meta.type.new.expr",
+				"support.constant.math",
+				"support.constant.dom",
+				"support.constant.json",
+				"entity.other.inherited-class"
+			],
+			"settings": {
+				"foreground": "#4EC9B0"
+			}
+		},
+		{
+			"scope": [
+				"keyword.control",
+				"source.cpp keyword.operator.new",
+				"source.cpp keyword.operator.delete",
+				"keyword.other.using",
+				"keyword.other.directive.using",
+				"keyword.other.operator"
+			],
+			"settings": {
+				"foreground": "#C586C0"
+			}
+		},
+		{
+			"scope": [
+				"variable",
+				"meta.definition.variable.name",
+				"support.variable"
+			],
+			"settings": {
+				"foreground": "#9CDCFE"
+			}
+		},
+		{
+			"scope": [
+				"meta.object-literal.key"
+			],
+			"settings": {
+				"foreground": "#9CDCFE"
+			}
+		},
+		{
+			"scope": [
+				"support.constant.property-value",
+				"support.constant.font-name",
+				"support.constant.media-type",
+				"support.constant.media",
+				"constant.other.color.rgb-value",
+				"constant.other.rgb-value",
+				"support.constant.color"
+			],
+			"settings": {
+				"foreground": "#CE9178"
+			}
+		},
+		{
+			"scope": "meta.resultLinePrefix.contextLinePrefix.search",
+			"settings": {
+				"foreground": "#CBEDCB"
+			}
+		},
+		{
+			"scope": "token.info-token",
+			"settings": {
+				"foreground": "#6796E6"
+			}
+		},
+		{
+			"scope": "token.warn-token",
+			"settings": {
+				"foreground": "#008000"
+			}
+		},
+		{
+			"scope": "token.error-token",
+			"settings": {
+				"foreground": "#FF0000"
+			}
+		},
+		{
+			"scope": "token.debug-token",
+			"settings": {
+				"foreground": "#B267E6"
+			}
+		}
+	]
+}</textarea>
+</div>
+
+<p>You can also choose one of these pre-downloaded selections</p>
+
+<p>Light</p>
+<ul id="preloaded-themes-light"><li>Loading...</li></ul>
+
+<p>Dark</p>
+<ul id="preloaded-themes-dark"><li>Loading...</li></ul>
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Check this preview to see how things look:</p>
+
+
+
+<section class="code-section">
+
+<div class="highlight-wrapper">
+
+
+
+
+<div class="highlight-title">Python Sample
+</div>
+
+
+
+
+<div class="highlight-grid">
+    <div class="highlight-spacer"></div><pre class="highlight-block"><code><span class="line-marker"></span><span class="source python"><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="meta import-name python">django</span><span class="punctuation accessor dot python">.</span><span class="meta import-name python">urls</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">path</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta statement import python"><span class="keyword control import from python">from</span></span><span class="meta statement import python"><span class="meta import-source python"> <span class="meta import-path python"><span class="keyword control import relative python">.</span></span> <span class="meta statement import python"><span class="keyword control import python">import</span></span></span></span><span class="meta statement import python"></span><span class="meta statement import python"> <span class="meta generic-name python">views</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">app_name</span></span> <span class="keyword operator assignment python">=</span> <span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">notes<span class="punctuation definition string end python">&quot;</span></span></span>
+<span class="line-marker"></span><span class="meta qualified-name python"><span class="meta generic-name python">urlpatterns</span></span> <span class="keyword operator assignment python">=</span> <span class="meta structure list python"><span class="punctuation section list begin python">[</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">index</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">index<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">create/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">create</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">create<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">&lt;int:pk&gt;/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">view</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">view<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span>    <span class="meta function-call python"><span class="meta qualified-name python"><span class="variable function python">path</span></span><span class="punctuation section arguments begin python">(</span><span class="meta function-call arguments python"><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">&lt;int:pk&gt;/edit/<span class="punctuation definition string end python">&quot;</span></span></span><span class="punctuation separator arguments python">,</span> <span class="meta qualified-name python"><span class="meta generic-name python">views</span><span class="punctuation accessor dot python">.</span><span class="meta generic-name python">edit</span></span><span class="punctuation separator arguments python">,</span> <span class="variable parameter python">name</span><span class="keyword operator assignment python">=</span><span class="meta string python"><span class="string quoted double python"><span class="punctuation definition string begin python">&quot;</span></span></span><span class="meta string python"><span class="string quoted double python">edit<span class="punctuation definition string end python">&quot;</span></span></span></span><span class="punctuation section arguments end python">)</span></span><span class="punctuation separator list python">,</span>
+<span class="line-marker"></span><span class="punctuation section list end python">]</span></span></span></code></pre></div>
+<div class="highlight-status-bar"></div>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="highlight-wrapper">
+
+
+
+
+<div class="highlight-title">HTML Sample
+</div>
+
+
+
+
+<div class="highlight-grid">
+    <div class="highlight-spacer"></div><pre class="highlight-block"><code><span class="line-marker"></span><span class="text html basic"><span class="meta tag sgml html"><span class="punctuation definition tag html">&lt;!</span><span class="meta tag sgml doctype html"><span class="entity name tag doctype html">DOCTYPE</span> html</span><span class="punctuation definition tag html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">html</span> <span class="meta attribute-with-value html"><span class="entity other attribute-name html">lang</span><span class="punctuation separator key-value html">=</span></span><span class="meta attribute-with-value html"><span class="string quoted double html"><span class="punctuation definition string begin html">&quot;</span>en<span class="punctuation definition string end html">&quot;</span></span></span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span>  <span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>Hello, World<span class="meta tag block any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag block any html">h1</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">body</span><span class="punctuation definition tag end html">&gt;</span></span>
+<span class="line-marker"></span><span class="meta tag structure any html"><span class="punctuation definition tag begin html">&lt;/</span><span class="entity name tag structure any html">html</span><span class="punctuation definition tag end html">&gt;</span></span></span></code></pre></div>
+<div class="highlight-status-bar"></div>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+
+<section class="code-section">
+
+<div class="highlight-wrapper">
+
+
+
+
+<div class="highlight-title">JavaScript Sample
+</div>
+
+
+
+
+<div class="highlight-grid">
+    <div class="highlight-spacer"></div><pre class="highlight-block"><code><span class="line-marker"></span><span class="source js"><span class="storage type js">const</span> <span class="variable other readwrite js">example</span> <span class="keyword operator assignment js">=</span> <span class="meta object-literal js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">a</span><span class="punctuation separator key-value js">:</span> <span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>alfa<span class="punctuation definition string end js">&quot;</span></span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">b</span><span class="punctuation separator key-value js">:</span> <span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>bravo<span class="punctuation definition string end js">&quot;</span></span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">c</span><span class="punctuation separator key-value js">:</span> <span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>charlie<span class="punctuation definition string end js">&quot;</span></span><span class="punctuation separator comma js">,</span>
+<span class="line-marker"></span>    <span class="meta object-literal key js">d</span><span class="punctuation separator key-value js">:</span> <span class="string quoted double js"><span class="punctuation definition string begin js">&quot;</span>delta<span class="punctuation definition string end js">&quot;</span></span>
+<span class="line-marker"></span><span class="punctuation section block js">}</span></span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta for js"><span class="keyword control loop js">for</span> <span class="meta group js"><span class="punctuation section group js">(</span><span class="storage type js">const</span> <span class="variable other readwrite js">k</span> <span class="keyword operator js">of</span> <span class="support class builtin js">Object</span><span class="punctuation accessor js">.</span><span class="meta function-call method js"><span class="variable function js">keys</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="variable other readwrite js">example</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span><span class="punctuation section group js">)</span></span> <span class="meta block js"><span class="punctuation section block js">{</span>
+<span class="line-marker"></span>    <span class="meta function-call method js"><span class="support type object console js">console</span><span class="punctuation accessor js">.</span><span class="support function console js">log</span><span class="meta group js"><span class="punctuation section group js">(</span><span class="variable other readwrite js">k</span></span><span class="meta group js"><span class="punctuation section group js">)</span></span></span>
+<span class="line-marker"></span></span><span class="meta block js"><span class="punctuation section block js">}</span></span></span></span></code></pre></div>
+<div class="highlight-status-bar"></div>
+    
+</div>
+</section>
+
+ 
+
+
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Copy the CSS from here into your site:</p>
+
+<section class="html-section">
+
+<div>
+<label for="css-output">CSS Output</label>
+<textarea id="css-output" cols="60" rows="8"></textarea>
+</div>
+
+
+
+
+</li>
+
+</ol>
+
+
+
+
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Notes</h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ul class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>The first themes I used didn't have background colors for
+any of the fonts so not sure I'm guessing at how to parse
+them for now.</p>
+
+
+</li>
+
+
+
+</ul>
+
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">TODO</h2>
+    
+  
+
+</hgroup>
+
+
+
+
+
+
+
+    
+
+</section>
+
+<ul class="flow">
+    
+
+
+<li class="flow">
+
+
+
+<p>Set up so you can skip the output for the code block
+forground and/or background colors</p>
+
+
+</li>
+
+
+<li class="flow">
+
+
+
+<p>Set up so you can dynamically change the background
+color of this page for easier referece to other sites</p>
+
+
+</li>
+
+
+
+</ul>
+<section class="html-section">
+
+<script type="module">
+  import JSON5 from '/theme/scripts/json5.min.mjs'
+  
+  const stylesheetEl = document.createElement("style")
+  let preloadedThemes = {}
+  let colorType = "DARK"
+
+  function addEventListeners() {
+    document.querySelector("#vs-code-input").addEventListener("input", convertTheme)
+  }
+
+  function convertTheme() {
+    const themeInEl = document.querySelector("#vs-code-input")
+    const data = JSON5.parse(themeInEl.value)
+    const newData = []
+    data.tokenColors.forEach((tokenColor) => {
+      const scopeType = typeof(tokenColor.scope)
+      if (scopeType == "string") {
+        newData.push(
+          {
+            selectors: [tokenColor.scope],
+            settings: tokenColor.settings
+          }
+        )
+      } else {
+        newData.push(
+          {
+            selectors: tokenColor.scope,
+            settings: tokenColor.settings
+          }
+        )
+      }
+    })
+
+
+    const cssOutEl = document.querySelector("#css-output")
+    const borderSize = "1px"
+
+    const styles = [`/* START ${colorType} CODE STYLES */\n`]
+    styles.push(`:root { --highlight-radius: 0.3rem; }`)
+    styles.push(`.line-numbers { counter-reset: lineNumber; }`)
+    styles.push(`.line-marker { counter-increment: lineNumber; color: ${getLineNumbersForegroundColor(data)}; }`)
+    styles.push(`.line-marker:before { content: counter(lineNumber); display: inline-block; margin-left: -6.5ch; padding-right: 1.7ch; text-align: end; width: 7.5ch; }`)
+    styles.push(`.highlight-grid { display: grid; grid-template-columns: 4.6ch 1fr; }`)
+    styles.push(`.highlight-wrapper { color: ${getWrapperForegroundColor(data)}; background-color: ${getWrapperBackgroundColor(data)}; border-radius: var(--highlight-radius); border: ${borderSize} solid ${getBorderColor(data)}; }`)
+    styles.push(`.highlight-title { color: ${getTitleBarForegroundColor(data)}; background-color: ${getTitleBarBackgroundColor(data)}; padding-block: 0.3rem; border-top-left-radius: var(--highlight-radius); border-top-right-radius: var(--highlight-radius); border-bottom: ${borderSize} solid ${getBorderColor(data)}; text-align: center; }`)
+    styles.push(`.highlight-status-bar { text-align: right; padding: 0.3rem; border-top: ${borderSize} solid ${getBorderColor(data)}; }`)
+    styles.push(`.highlight-block { padding-block: 0.5rem; background-color: ${getEditorBackgroundColor(data)}; overflow-wrap: break-word; white-space: pre-wrap; border-left: ${borderSize} solid ${getBorderColor(data)}; }`)
+    styles.push(newData.map((rule) => {
+      return `${getSelectors(rule)} \{ ${getSelectorForegroundColor(rule)} ${getSelectorStyle(rule)} \}`
+    }).join(" "))
+    styles.push(`\n/* END ${colorType} CODE STYLES */`)
+
+    const stylesheetString = styles.join(" ")
+    stylesheetEl.innerHTML = stylesheetString
+    document.head.appendChild(stylesheetEl)
+    cssOutEl.value = stylesheetString
+  }
+
+  function findColor(data, queries, backup) {
+    const c = data['colors']
+    let returnColor = backup
+    for (let i = 0; i < queries.length; i++) {
+      const q = queries[i]
+      if (c[q]) {
+        console.log(`Found: ${q} - ${c[q]}`)
+        returnColor = c[q]
+        i = queries.length
+      }
+    }
+    return returnColor
+  }
+
+
+  function getBaseBackgroundColor(data) {
+    if (data['type'] === 'light' || data['type'] === 'hcLight') {
+      return "white"
+    } else {
+      return "black"
+    }
+  }
+
+  function getBaseForegroundColor(data) {
+    return getBaseBackgroundColor(data) === "white" ? "black" : "white"
+  }
+
+  function getBorderColor(data) {
+    return findColor(
+      data,
+      [
+      'editor.foreground',
+      ],
+      getBaseForegroundColor(data)
+    )
+  }
+
+  function getEditorBackgroundColor(data) {
+    return findColor(
+      data,
+      [
+      'editor.background',
+      ],
+      getBaseBackgroundColor(data)
+    )
+  }
+
+
+  function getLineNumbersBackgroundColor(data) {
+    return findColor(
+      data,
+      [
+      'activityBar.background',
+      'sideBarTitle.background',
+      ],
+      getBaseBackgroundColor(data)
+    )
+  }
+
+  function getLineNumbersForegroundColor(data) {
+    return findColor(
+      data,
+      [
+      'activityBar.foreground',
+      'sideBarTitle.foreground',
+      ],
+      getBaseForegroundColor(data)
+    )
+  }
+
+  function getPreloadedTheme(event) {
+    const k = event.target.dataset.key
+    const el = document.querySelector("#vs-code-input")
+    colorType = preloadedThemes[k]['type'].toUpperCase()
+    el.value = JSON5.stringify(preloadedThemes[k])
+    convertTheme()
+  }
+
+  function getSelectors(rule) {
+    return rule.selectors.map((selector) => { return `.${selector}` }).join(",")
+  }
+
+  function getSelectorForegroundColor(rule) {
+    if (rule.settings.foreground) {
+      return `color: ${rule.settings.foreground};`
+    } else {
+      return ""
+    }
+  }
+
+  function getSelectorStyle(rule) {
+    return "font-style: bold; "
+  }
+
+  function getTitleBarForegroundColor(data) {
+    return findColor(
+      data,
+      ['titleBar.activeForeground', 'editor.foreground'],
+      getBaseForegroundColor(data)
+    )
+  }
+
+  function getTitleBarBackgroundColor(data) {
+    return findColor(
+      data,
+      ['titleBar.activeBackground', 'editor.background'],
+      getBaseForegroundColor(data)
+    )
+  }
+
+  function getWrapperBackgroundColor(data) {
+    return findColor(
+      data,
+      ['titleBar.inactiveBackground'],
+      getBaseBackgroundColor(data)
+    )
+  }
+
+  function getWrapperForegroundColor(data) {
+    return findColor(
+      data,
+      ['editor.foreground'],
+      getBaseForegroundColor(data)
+    )
+  }
+
+
+
+/*
+
+  function getInternalBorder(data) {
+    const c = data['colors']
+    if (c['activityBar.border']) {
+      return c['activityBar.border']
+    } else if (c['activityBar.activeBorder']) {
+      return c['activityBar.activeBorder']
+    } else if (c['activityBar.foreground']) {
+      return c['activityBar.foreground']
+    } else {
+      return getSidebarForegroundColor(data) 
+    }
+  }
+
+  function getEditorBackground(data) {
+    if (data['colors']['editor.background']) {
+      return data['colors']['editor.background']
+    } else {
+      return getBaseBackgroundColor(data)
+    }
+  }
+
+  function getBackground(v) {
+    if (v.settings.background) {
+      return `background-color: ${v.settings.background}; `
+    } else {
+      return ""
+    }
+  }
+
+  function getColor(v) {
+    if (v.settings.foreground) {
+      return `color: ${v.settings.foreground}; `
+    } else {
+      return ""
+    }
+  }
+
+  function getNumberColor(data) {
+    if (data['colors']['editorLineNumber.foreground']) {
+      return data['colors']['editorLineNumber.foreground']
+    } else if (data['colors']['editor.foreground']) {
+      return data['colors']['editor.foreground']
+    } else {
+      return "blue"
+    }
+  }
+
+
+  function getStyle(v) {
+    if (v.settings.fontStyle) {
+      return `font-style: ${v.settings.fontStyle}; `
+    } else {
+      return ""
+    }
+  }
+
+
+  function getSidebarBackgroundColor(data) {
+    const c = data['colors']
+    if (c['activityBar.background']) {
+      return c['activityBar.background']
+    } else if (c['editor.background']) {
+      return c['editor.background']
+    } else {
+      return "black"
+    }
+  }
+
+  function getSidebarForegroundColor(data) {
+    const c = data['colors']
+    if (c['activityBarBadge.foreground']) {
+      return c['activityBarBadge.foreground']
+    } else if (c['activityBar.foreground']) {
+      return c['activityBar.foreground']
+    } else  {
+      return getBaseForegroundColor(data)
+    }
+  }
+
+  function getTitleBackgroundColor(data) {
+    return "red";
+  }
+
+  function getTitleForegroundColor(data) {
+    return "blue"
+  }
+
+  function getWrappers(data) {
+    const wrapperSelectors = document.querySelector("#wrapper-selectors").value
+    // Looks like VS Code defaults to white so
+    // duplicating that behavior here:
+    const color = getSidebarForegroundColor(data)
+    const bg = getSidebarBackgroundColor(data)
+    return `${wrapperSelectors} { color: ${color}; background-color: ${bg}; } `
+  }
+  */
+
+  function preloadThemes() {
+    fetch('/theme/tmp/vs-code-themes.jsonc')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('There was a problem getting the data')
+        }
+        return response.text()
+      })
+      .then((data) => 
+      {
+        const parsedData = JSON5.parse(data)
+        preloadedThemes = parsedData.themes
+        const preloadedLight = document.querySelector("#preloaded-themes-light")
+        preloadedLight.innerHTML = ""
+        const preloadedDark = document.querySelector("#preloaded-themes-dark")
+        preloadedDark.innerHTML = ""
+        for (const k in preloadedThemes) {
+          const newTheme = document.createElement("li")
+          const newButton = document.createElement("button")
+          newButton.dataset.key = k
+          newButton.innerHTML = k
+          newButton.addEventListener("click", getPreloadedTheme)
+          newTheme.appendChild(newButton)
+          if (preloadedThemes[k]['type'] === "light") {
+            preloadedLight.appendChild(newTheme)
+          } else if (preloadedThemes[k]['type'] === "hcLight") {
+            preloadedLight.appendChild(newTheme)
+          } else if (preloadedThemes[k]['type'] === "hcDark") {
+            preloadedDark.appendChild(newTheme)
+          } else {
+            preloadedDark.appendChild(newTheme)
+          }
+        }
+      })
+      .catch((error) => {
+        console.error('Fetch Error: ', error)
+      })
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    preloadThemes()
+    addEventListeners()
+    convertTheme()
+  })
+</script>
+
+</section>
+
+<section class="h2-section flow">
+<hgroup>
+
+  
+    <h2 class="section-heading">Other CSS</h2>
+    
+  
+
+  
+
+</hgroup>
+
+
+
+
+
+
+    
+<p>This is the rest of the CSS that's on this page. 
+Note that they <code class=""><span class="text plain">box-sizing</span></code> and <code class=""><span class="text plain">margin</span></code>
+are necessary to tighten up the indvidual elements as
+you see them here. </p>
+
+
+
+
+    
+
+    
+
+</section>
+
+<section class="css-section-show">
+
+
+
+<div class="code-wrapper code-button-wrapper">
+<pre class="code-block"><code><span class="line-marker"></span><span class="source css"><span class="meta selector css"><span class="entity name tag wildcard css">*</span>,
+<span class="line-marker"></span><span class="entity name tag wildcard css">*</span><span class="entity other pseudo-element css"><span class="punctuation definition entity css">::</span>before</span>,
+<span class="line-marker"></span><span class="entity name tag wildcard css">*</span><span class="entity other pseudo-element css"><span class="punctuation definition entity css">::</span>after</span> </span><span class="meta property-list css"><span class="punctuation section property-list css">{</span>
+<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type property-name css">box-sizing</span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="support constant property-value css">border-box</span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span></span><span class="punctuation section property-list css">}</span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta selector css"><span class="entity name tag wildcard css">*</span> </span><span class="meta property-list css"><span class="punctuation section property-list css">{</span>
+<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type property-name css">margin</span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant numeric css">0</span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span></span><span class="punctuation section property-list css">}</span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta selector css"><span class="entity other attribute-name class css"><span class="punctuation definition entity css">.</span>flow</span> <span class="punctuation separator combinator css">&gt;</span> <span class="entity other pseudo-class css"><span class="punctuation definition entity css">:</span>where</span>(<span class="meta function-call css"><span class="entity other pseudo-class css"><span class="punctuation definition entity css">:</span>not</span><span class="meta group css"><span class="punctuation definition group begin css">(</span><span class="meta selector css"><span class="entity other pseudo-class css"><span class="punctuation definition entity css">:</span>first-child</span></span></span><span class="meta group css"><span class="punctuation definition group end css">)</span></span></span></span>) <span class="meta property-list css"><span class="punctuation section property-list css">{</span>
+<span class="line-marker"></span>  <span class="meta property-name css"><span class="support type property-name css">margin-top</span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="meta function-call css"><span class="support function var css">var</span><span class="meta group css"><span class="punctuation definition group begin css">(</span><span class="support type custom-property css"><span class="punctuation definition custom-property css">--</span><span class="support type custom-property name css">flow-space</span></span><span class="punctuation separator css">,</span> 1em</span><span class="meta group css"><span class="punctuation definition group end css">)</span></span></span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span></span><span class="punctuation section property-list css">}</span>
+<span class="line-marker"></span>
+<span class="line-marker"></span><span class="meta selector css"><span class="entity name tag css">body</span> </span><span class="meta property-list css"><span class="punctuation section property-list css">{</span>
+<span class="line-marker"></span>	<span class="meta property-name css"><span class="support type property-name css">background-color</span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="support constant color w3c-standard-color-name css">black</span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span>	<span class="meta property-name css"><span class="support type property-name css">color</span></span><span class="punctuation separator key-value css">:</span><span class="meta property-value css"> </span><span class="meta property-value css"><span class="constant other color rgb-value css"><span class="punctuation definition constant css">#</span>aaa</span></span><span class="punctuation terminator rule css">;</span>
+<span class="line-marker"></span></span><span class="punctuation section property-list css">}</span></span></code></pre>
+</div>
+
+
+</section><div class="fin-token">~ fin ~</div>
+
+</main>
+    <footer>
+      
+        from <a href="https://www.alanwsmith.com/">alan w smith</a>
+      
+      <div class="scheme-switcher"></div>
+    </footer>
+
+
+<style>
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+.flow > :where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1em);
+}
+
+body {
+	background-color: black;
+	color: #aaa;
+}
+
+</style>
+
+</body>
+</html>

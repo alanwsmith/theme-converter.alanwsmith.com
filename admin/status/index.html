@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html><head><style> 
+body { background-color: #111; color: #aaa; } 
+</style></head><body>
+<header><a href="/">Home</a></header>
+<h1>Status</h1>
+<h2>Errors</h2>
+<ul>
+<li>
+<h3>Theme Test Error</h3>
+<div>Path: /Users/alan/Documents/Neopoligen/theme-converter.alanwsmith.com/themes/neopoligen-v0.1.0/sections/raw/code/_tests/start-end-with-no-nums.neo</div>
+<h4>Expected:</h4>
+<pre>
+&lt;section class=&quot;code-section&quot;&gt;
+  &lt;div class=&quot;code-wrapper&quot;&gt;
+    &lt;pre class=&quot;code-pre-no-nums&quot;&gt;
+      &lt;code&gt;
+        &lt;span class=&quot;text plain&quot;&gt;alfa bravo
+        &lt;&#x2f;span&gt;
+      &lt;&#x2f;code&gt;
+    &lt;&#x2f;pre&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre>
+<h4>Got:</h4>
+<pre>
+&lt;section class=&quot;code-section&quot;&gt;
+  &lt;div class=&quot;highlight-wrapper&quot;&gt;
+    &lt;div class=&quot;highlight-title&quot;&gt;no-nums
+    &lt;&#x2f;div&gt;
+    &lt;div class=&quot;highlight-grid&quot;&gt;
+      &lt;div class=&quot;highlight-spacer&quot;&gt;
+      &lt;&#x2f;div&gt;
+      &lt;pre class=&quot;highlight-block-no-nums&quot;&gt;
+        &lt;code&gt;
+          &lt;span class=&quot;text plain&quot;&gt;alfa bravo
+          &lt;&#x2f;span&gt;
+        &lt;&#x2f;code&gt;
+      &lt;&#x2f;pre&gt;
+    &lt;&#x2f;div&gt;
+    &lt;div class=&quot;highlight-status-bar&quot;&gt;
+    &lt;&#x2f;div&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre></li>
+<li>
+<h3>Theme Test Error</h3>
+<div>Path: /Users/alan/Documents/Neopoligen/theme-converter.alanwsmith.com/themes/neopoligen-v0.1.0/sections/raw/code/_tests/full-with-subtitle.neo</div>
+<h4>Expected:</h4>
+<pre>
+&lt;section class=&quot;code-section&quot;&gt;
+  &lt;div class=&quot;code-wrapper&quot;&gt;
+    &lt;div class=&quot;code-subtitle&quot;&gt;file: some&#x2f;file&#x2f;path.txt
+    &lt;&#x2f;div&gt;
+    &lt;pre class=&quot;code-pre&quot;&gt;
+      &lt;code&gt;
+        &lt;span class=&quot;line-marker&quot;&gt;
+        &lt;&#x2f;span&gt;
+        &lt;span class=&quot;text plain&quot;&gt;delta whiskey
+        &lt;&#x2f;span&gt;
+      &lt;&#x2f;code&gt;
+    &lt;&#x2f;pre&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre>
+<h4>Got:</h4>
+<pre>
+&lt;section class=&quot;code-section&quot;&gt;
+  &lt;div class=&quot;highlight-wrapper&quot;&gt;
+    &lt;div class=&quot;highlight-grid&quot;&gt;
+      &lt;div class=&quot;highlight-spacer&quot;&gt;
+      &lt;&#x2f;div&gt;
+      &lt;pre class=&quot;highlight-block&quot;&gt;
+        &lt;code&gt;
+          &lt;span class=&quot;line-marker&quot;&gt;
+          &lt;&#x2f;span&gt;
+          &lt;span class=&quot;text plain&quot;&gt;delta whiskey
+          &lt;&#x2f;span&gt;
+        &lt;&#x2f;code&gt;
+      &lt;&#x2f;pre&gt;
+    &lt;&#x2f;div&gt;
+    &lt;div class=&quot;highlight-status-bar&quot;&gt;
+    &lt;&#x2f;div&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre></li>
+<li>
+<h3>Theme Test Error</h3>
+<div>Path: /Users/alan/Documents/Neopoligen/theme-converter.alanwsmith.com/themes/neopoligen-v0.1.0/sections/raw/code/_tests/full-with-language.neo</div>
+<h4>Expected:</h4>
+<pre>
+&lt;section class=&quot;code-section&quot;&gt;
+  &lt;div class=&quot;code-wrapper&quot;&gt;
+    &lt;pre class=&quot;code-pre&quot;&gt;
+      &lt;code&gt;
+        &lt;span class=&quot;line-marker&quot;&gt;
+        &lt;&#x2f;span&gt;
+        &lt;span class=&quot;source python&quot;&gt;
+          &lt;span class=&quot;meta function-call python&quot;&gt;
+            &lt;span class=&quot;meta qualified-name python&quot;&gt;
+              &lt;span class=&quot;support function builtin python&quot;&gt;print
+              &lt;&#x2f;span&gt;
+            &lt;&#x2f;span&gt;
+            &lt;span class=&quot;punctuation section arguments begin python&quot;&gt;(
+            &lt;&#x2f;span&gt;
+            &lt;span class=&quot;meta function-call arguments python&quot;&gt;
+              &lt;span class=&quot;meta string python&quot;&gt;
+                &lt;span class=&quot;string quoted double python&quot;&gt;
+                  &lt;span class=&quot;punctuation definition string begin python&quot;&gt;&amp;quot;
+                  &lt;&#x2f;span&gt;
+                &lt;&#x2f;span&gt;
+              &lt;&#x2f;span&gt;
+              &lt;span class=&quot;meta string python&quot;&gt;
+                &lt;span class=&quot;string quoted double python&quot;&gt;Hello, World
+                  &lt;span class=&quot;punctuation definition string end python&quot;&gt;&amp;quot;
+                  &lt;&#x2f;span&gt;
+                &lt;&#x2f;span&gt;
+              &lt;&#x2f;span&gt;
+            &lt;&#x2f;span&gt;
+            &lt;span class=&quot;punctuation section arguments end python&quot;&gt;)
+            &lt;&#x2f;span&gt;
+          &lt;&#x2f;span&gt;
+        &lt;&#x2f;span&gt;
+      &lt;&#x2f;code&gt;
+    &lt;&#x2f;pre&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre>
+<h4>Got:</h4>
+<pre>
+&lt;section class=&quot;code-section&quot;&gt;
+  &lt;div class=&quot;highlight-wrapper&quot;&gt;
+    &lt;div class=&quot;highlight-title&quot;&gt;python
+    &lt;&#x2f;div&gt;
+    &lt;div class=&quot;highlight-grid&quot;&gt;
+      &lt;div class=&quot;highlight-spacer&quot;&gt;
+      &lt;&#x2f;div&gt;
+      &lt;pre class=&quot;highlight-block&quot;&gt;
+        &lt;code&gt;
+          &lt;span class=&quot;line-marker&quot;&gt;
+          &lt;&#x2f;span&gt;
+          &lt;span class=&quot;source python&quot;&gt;
+            &lt;span class=&quot;meta function-call python&quot;&gt;
+              &lt;span class=&quot;meta qualified-name python&quot;&gt;
+                &lt;span class=&quot;support function builtin python&quot;&gt;print
+                &lt;&#x2f;span&gt;
+              &lt;&#x2f;span&gt;
+              &lt;span class=&quot;punctuation section arguments begin python&quot;&gt;(
+              &lt;&#x2f;span&gt;
+              &lt;span class=&quot;meta function-call arguments python&quot;&gt;
+                &lt;span class=&quot;meta string python&quot;&gt;
+                  &lt;span class=&quot;string quoted double python&quot;&gt;
+                    &lt;span class=&quot;punctuation definition string begin python&quot;&gt;&amp;quot;
+                    &lt;&#x2f;span&gt;
+                  &lt;&#x2f;span&gt;
+                &lt;&#x2f;span&gt;
+                &lt;span class=&quot;meta string python&quot;&gt;
+                  &lt;span class=&quot;string quoted double python&quot;&gt;Hello, World
+                    &lt;span class=&quot;punctuation definition string end python&quot;&gt;&amp;quot;
+                    &lt;&#x2f;span&gt;
+                  &lt;&#x2f;span&gt;
+                &lt;&#x2f;span&gt;
+              &lt;&#x2f;span&gt;
+              &lt;span class=&quot;punctuation section arguments end python&quot;&gt;)
+              &lt;&#x2f;span&gt;
+            &lt;&#x2f;span&gt;
+          &lt;&#x2f;span&gt;
+        &lt;&#x2f;code&gt;
+      &lt;&#x2f;pre&gt;
+    &lt;&#x2f;div&gt;
+    &lt;div class=&quot;highlight-status-bar&quot;&gt;
+    &lt;&#x2f;div&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre></li>
+<li>
+<h3>Theme Test Error</h3>
+<div>Path: /Users/alan/Documents/Neopoligen/theme-converter.alanwsmith.com/themes/neopoligen-v0.1.0/sections/raw/code/_tests/full-with-title.neo</div>
+<h4>Expected:</h4>
+<pre>
+&lt;section class=&quot;code-section&quot;&gt;
+  &lt;div class=&quot;code-wrapper&quot;&gt;
+    &lt;div class=&quot;code-title&quot;&gt;Some Code
+    &lt;&#x2f;div&gt;
+    &lt;pre class=&quot;code-pre&quot;&gt;
+      &lt;code&gt;
+        &lt;span class=&quot;line-marker&quot;&gt;
+        &lt;&#x2f;span&gt;
+        &lt;span class=&quot;text plain&quot;&gt;Code with a title
+        &lt;&#x2f;span&gt;
+      &lt;&#x2f;code&gt;
+    &lt;&#x2f;pre&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre>
+<h4>Got:</h4>
+<pre>
+&lt;section class=&quot;code-section&quot;&gt;
+  &lt;div class=&quot;highlight-wrapper&quot;&gt;
+    &lt;div class=&quot;highlight-title&quot;&gt;Some Code
+    &lt;&#x2f;div&gt;
+    &lt;div class=&quot;highlight-grid&quot;&gt;
+      &lt;div class=&quot;highlight-spacer&quot;&gt;
+      &lt;&#x2f;div&gt;
+      &lt;pre class=&quot;highlight-block&quot;&gt;
+        &lt;code&gt;
+          &lt;span class=&quot;line-marker&quot;&gt;
+          &lt;&#x2f;span&gt;
+          &lt;span class=&quot;text plain&quot;&gt;Code with a title
+          &lt;&#x2f;span&gt;
+        &lt;&#x2f;code&gt;
+      &lt;&#x2f;pre&gt;
+    &lt;&#x2f;div&gt;
+    &lt;div class=&quot;highlight-status-bar&quot;&gt;
+    &lt;&#x2f;div&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre></li>
+<li>
+<h3>Theme Test Error</h3>
+<div>Path: /Users/alan/Documents/Neopoligen/theme-converter.alanwsmith.com/themes/neopoligen-v0.1.0/sections/raw/cli/_tests/start-end-basic.neo</div>
+<h4>Expected:</h4>
+<pre>
+&lt;section class=&quot;cli-section&quot;&gt;
+  &lt;div class=&quot;cli-wrapper&quot;&gt;
+    &lt;div class=&quot;cli-subtitle&quot;&gt;command line
+    &lt;&#x2f;div&gt;
+    &lt;pre class=&quot;cli-pre&quot;&gt;
+      &lt;code&gt;command line snippet
+      &lt;&#x2f;code&gt;
+    &lt;&#x2f;pre&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre>
+<h4>Got:</h4>
+<pre>
+&lt;section class=&quot;cli-section&quot;&gt;
+  &lt;div class=&quot;cli-wrapper&quot;&gt;
+    &lt;div class=&quot;cli-title&quot;&gt;terminal commands
+    &lt;&#x2f;div&gt;
+    &lt;div class=&quot;code-button-wrapper&quot;&gt;
+      &lt;pre class=&quot;cli-block&quot;&gt;
+        &lt;code&gt;
+          &lt;span class=&quot;source shell bash&quot;&gt;
+            &lt;span class=&quot;meta function-call shell&quot;&gt;
+              &lt;span class=&quot;support function command shell&quot;&gt;command
+              &lt;&#x2f;span&gt;
+            &lt;&#x2f;span&gt;
+            &lt;span class=&quot;meta function-call arguments shell&quot;&gt;line snippet
+            &lt;&#x2f;span&gt;
+          &lt;&#x2f;span&gt;
+        &lt;&#x2f;code&gt;
+      &lt;&#x2f;pre&gt;
+    &lt;&#x2f;div&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre></li>
+<li>
+<h3>Theme Test Error</h3>
+<div>Path: /Users/alan/Documents/Neopoligen/theme-converter.alanwsmith.com/themes/neopoligen-v0.1.0/sections/raw/pre/tests/full-basic-test.neo</div>
+<h4>Expected:</h4>
+<pre>
+&lt;section class=&quot;pre-section&quot;&gt;
+  &lt;pre&gt;This is a pre section without any attrs
+  &lt;&#x2f;pre&gt;
+&lt;&#x2f;section&gt;
+
+</pre>
+<h4>Got:</h4>
+<pre>
+&lt;section class=&quot;pre-section&quot;&gt;
+  &lt;div class=&quot;pre-wrapper&quot;&gt;
+    &lt;pre class=&quot;pre-block&quot;&gt;This is a pre section without any attrs
+    &lt;&#x2f;pre&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre></li>
+<li>
+<h3>Theme Test Error</h3>
+<div>Path: /Users/alan/Documents/Neopoligen/theme-converter.alanwsmith.com/themes/neopoligen-v0.1.0/sections/raw/pre/tests/full-with-attrs.neo</div>
+<h4>Expected:</h4>
+<pre>
+&lt;section class=&quot;alfa pre-section&quot;&gt;
+  &lt;pre&gt;This is some classed pre stuff
+  &lt;&#x2f;pre&gt;
+&lt;&#x2f;section&gt;
+
+</pre>
+<h4>Got:</h4>
+<pre>
+&lt;section class=&quot;alfa pre-section&quot;&gt;
+  &lt;div class=&quot;pre-wrapper&quot;&gt;
+    &lt;pre class=&quot;pre-block&quot;&gt;This is some classed pre stuff
+    &lt;&#x2f;pre&gt;
+  &lt;&#x2f;div&gt;
+&lt;&#x2f;section&gt;
+
+</pre></li>
+</ul>
+<h2>Config</h2>
+<pre>{
+  "base_url": "https://theme-converter.alanwsmith.com",
+  "default_language": "en",
+  "project_root": "/Users/alan/Documents/Neopoligen/theme-converter.alanwsmith.com",
+  "section_attrs": [],
+  "sections": {
+    "basic": [
+      "note",
+      "ref",
+      "endnote",
+      "h2",
+      "h5",
+      "h4",
+      "h3",
+      "title",
+      "comment",
+      "blurb",
+      "image",
+      "warning",
+      "no-wrapper",
+      "link",
+      "h6",
+      "blockquote",
+      "h1",
+      "hr",
+      "book-to-read-example",
+      "aside",
+      "footnote",
+      "photo",
+      "p",
+      "start-theme-test"
+    ],
+    "block": [],
+    "checklist": [
+      "todo"
+    ],
+    "checklist_item": [],
+    "json": [],
+    "list": [
+      "_tests",
+      "list",
+      "olist"
+    ],
+    "list_item": [],
+    "raw": [
+      "css",
+      "code",
+      "html",
+      "cli",
+      "head",
+      "results",
+      "pre",
+      "javascript",
+      "raw",
+      "expected-output"
+    ],
+    "yaml": [
+      "metadata"
+    ]
+  },
+  "span_attrs": [],
+  "theme_name": "neopoligen-v0.1.0",
+  "theme_options": {
+    "author": "Alan W. Smith",
+    "image_widths": [
+      100,
+      300,
+      600,
+      1200,
+      2400
+    ],
+    "site_name": "VS Code To CSS Theme Converter"
+  }
+}</pre>
+</body></html>
+        
