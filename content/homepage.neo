@@ -28,7 +28,7 @@ The Conversion Process
 -- html/
 
 <label for="site-background-color">Site Background Color</label>
-<input id="site-background-color" type="text" value="oklch(16.009% 0.03076 39.927)" size="40" />
+<input id="site-background-color" type="text" size="40" />
 
 -- /html
 
@@ -959,12 +959,25 @@ color of this page for easier referece to other sites
       })
   }
 
+	function prepBackgroundColor() {
+		const el = document.querySelector("#site-background-color")
+		const savedColor = localStorage.getItem("savedColor")
+		if (savedColor) {
+			el.value = savedColor
+		} else {
+			el.value = "oklch(16.009% 0.03076 39.927)"
+		}
+	}
+
+
 	function updateBackgroundColor() {
 		const el = document.querySelector("#site-background-color")
 		document.body.style.backgroundColor = el.value;
+		localStorage.setItem("savedColor", el.value)
 	}
 
   document.addEventListener("DOMContentLoaded", () => {
+		prepBackgroundColor()
 		updateBackgroundColor()
     preloadThemes()
     addEventListeners()
