@@ -23,6 +23,16 @@ The Conversion Process
 
 -- olist/
 
+- Set the background color of this page here:
+
+-- html/
+
+<label for="site-background-color">Site Background Color</label>
+<input id="site-background-color" type="text" size="40" />
+
+-- /html
+
+
 - Install your desired theme in VS Code and switch to it
 
 - Open the command palette with on mac with:
@@ -538,6 +548,8 @@ Developer: Generate Color Theme From Current Settings
 -- python
 -- title: Python Sample
 
+# This is a very long line that is used to test turning on and off the wrapping with the button in the status bar area below. Try it to see what happens.
+
 from django.urls import path
 
 from . import views
@@ -632,6 +644,7 @@ color of this page for easier referece to other sites
 
   function addEventListeners() {
     document.querySelector("#vs-code-input").addEventListener("input", convertTheme)
+		document.querySelector("#site-background-color").addEventListener("input", updateBackgroundColor)
   }
 
   function convertTheme() {
@@ -688,7 +701,7 @@ color of this page for easier referece to other sites
     for (let i = 0; i < queries.length; i++) {
       const q = queries[i]
       if (c[q]) {
-        console.log(`Found: ${q} - ${c[q]}`)
+        // console.log(`Found: ${q} - ${c[q]}`)
         returnColor = c[q]
         i = queries.length
       }
@@ -948,7 +961,26 @@ color of this page for easier referece to other sites
       })
   }
 
+	function prepBackgroundColor() {
+		const el = document.querySelector("#site-background-color")
+		const savedColor = localStorage.getItem("savedColor")
+		if (savedColor) {
+			el.value = savedColor
+		} else {
+			el.value = "oklch(16.009% 0.03076 39.927)"
+		}
+	}
+
+
+	function updateBackgroundColor() {
+		const el = document.querySelector("#site-background-color")
+		document.body.style.backgroundColor = el.value;
+		localStorage.setItem("savedColor", el.value)
+	}
+
   document.addEventListener("DOMContentLoaded", () => {
+		prepBackgroundColor()
+		updateBackgroundColor()
     preloadThemes()
     addEventListeners()
     convertTheme()
